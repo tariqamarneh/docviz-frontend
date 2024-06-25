@@ -13,7 +13,7 @@ interface StartingProps {
 
 const Starting: React.FC<StartingProps> = ({ setFileId, setSummary, setKeyData, setInsights, summary, setError }) => {
   return (
-    <div className={`flex flex-col w-screen h-screen justify-start items-center pt-20 md:pt-0 md:justify-center md:items-center  ${summary ? 'hidden':''}`}>
+    <div className={`flex flex-col w-screen h-fill-available justify-start items-center pt-20 md:pt-0 md:justify-center md:items-center  ${summary ? 'hidden':''}`}>
         <h1 className="mb-8 text-7xl font-extrabold text-gray-900 dark:text-white md:text-6xl lg:text-5xl">
           <span className="text-transparent bg-clip-text bg-gradient-to-r to-blue-700 from-sky-400">Servi</span>
           ces

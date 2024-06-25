@@ -143,7 +143,7 @@ const handleDeleteClick = async (sessionId: string) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col h-screen justify-center items-end">
+      <div className="flex flex-col h-fill-available justify-center items-end">
         <div
           className="cursor-pointer mt-5 mb-5 hover:{}"
           onClick={() => {

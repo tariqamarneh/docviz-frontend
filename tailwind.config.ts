@@ -23,6 +23,9 @@ const config: Config = {
       verscrollBehavior: {
         none: 'none',
       },
+      height: {
+        'fill-available': '-webkit-fill-available',
+      },
     },
   },
   plugins: [

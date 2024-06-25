@@ -39,7 +39,7 @@ export default function Signin() {
         <div className="fixed w-screen">
             <NavBar/>
         </div>
-        <div className="flex flex-col h-screen w-screen justify-center items-center md:flex-row">
+        <div className="flex flex-col h-fill-available w-screen justify-center items-center md:flex-row">
             <div className="max-w-sm w-[80%] mx-auto text-black dark:text-white mb-10">
                 <h1 className="mb-8 font-bold text-4xl ">
                     Continue your journey with us

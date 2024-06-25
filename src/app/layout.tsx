@@ -34,11 +34,11 @@ export default async function RootLayout({
   const session = await auth();
   return (
     <SessionProvider session={session}>
-      <html lang="en" className="overscroll-none h-[calc(100dvh)]">
+      <html lang="en" className="overscroll-none h-fill-available">
         <head>
           <ThemeModeScript />
         </head>
-        <body className={`${inter.className} h-[calc(100dvh)] bg-gradient-to-r to-gray-400 from-gray-100 dark:bg-gradient-to-r dark:to-slate-900 dark:from-slate-600 overscroll-none`}>
+        <body className={`${inter.className} h-fill-available bg-gradient-to-r to-gray-400 from-gray-100 dark:bg-gradient-to-r dark:to-slate-900 dark:from-slate-600 overscroll-none`}>
           <Flowbite>
             {children}
             <div className='fixed bottom-2 right-2 z-50'>

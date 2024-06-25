@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       <NavBar/>
-      <div className="h-screen flex flex-col items-center justify-center">
+      <div className="h-fill-available flex flex-col items-center justify-center">
         <h1 className="mb-8 text-7xl font-extrabold text-gray-900 dark:text-white md:text-6xl lg:text-5xl">
           <span className="text-transparent bg-clip-text bg-gradient-to-r to-blue-700 from-sky-400">Doc</span>
           Viz

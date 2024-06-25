@@ -74,12 +74,12 @@ export default function Home() {
 
   
   return (
-    <div className="w- h-screen">
+    <div className="h-fill-available">
       <Error message={error} setError={setError} />
       <div className="fixed w-screen z-50">
         <Navbar />
       </div>
-      <div className={`w-[20rem] h-screen fixed transition-transform duration-300 ease-in-out z-40 ${style}`}>
+      <div className={`w-[20rem] h-fill-available fixed transition-transform duration-300 ease-in-out z-40 ${style}`}>
         <SideBar
           setIsOpened={setIsOpend}
           isOpend={isOpend}

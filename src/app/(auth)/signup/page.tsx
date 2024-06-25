@@ -43,7 +43,7 @@ export default function Signup() {
             <div className="fixed w-screen">
                 <Navbar/>
             </div>
-            <div className="flex flex-col h-screen w-screen md:justify-center md:items-center md:flex-row pt-20">
+            <div className="flex flex-col h-fill-available w-screen md:justify-center md:items-center md:flex-row pt-20">
                 <div className="max-w-sm w-[80%] mx-auto text-black dark:text-white mb-10">
                     <h1 className="mb-8 font-bold text-4xl ">
                         Start your journey with us
