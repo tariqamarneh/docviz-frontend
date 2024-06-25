@@ -50,16 +50,18 @@ body {
   left: 0;
   right: 0;
   height: env(safe-area-inset-top);
-  background: linear-gradient(to right, var(--tw-gradient-stops));
-  --tw-gradient-from: #f3f4f6; /* from-gray-100 */
-  --tw-gradient-to: #9ca3af; /* to-gray-400 */
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  z-index: 1000;
 }
 
 @media (prefers-color-scheme: dark) {
   .dynamic-island-fill {
-    --tw-gradient-from: #374151; /* dark:from-slate-600 */
-    --tw-gradient-to: #1f2937; /* dark:to-slate-900 */
+    background: linear-gradient(to right, #1f2937, #374151); 
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .dynamic-island-fill {
+    background: linear-gradient(to right, #f3f4f6, #9ca3af);
   }
 }
 
