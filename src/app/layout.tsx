@@ -37,8 +37,9 @@ export default async function RootLayout({
       <html lang="en" className="overscroll-none h-fill-available">
         <head>
           <ThemeModeScript />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </head>
-        <body className={`${inter.className} h-fill-available bg-gradient-to-r to-gray-400 from-gray-100 dark:bg-gradient-to-r dark:to-slate-900 dark:from-slate-600 overscroll-none`}>
+        <body className={`safe-area ${inter.className} h-fill-available bg-gradient-to-r to-gray-400 from-gray-100 dark:bg-gradient-to-r dark:to-slate-900 dark:from-slate-600 overscroll-none`}>
           <Flowbite>
             {children}
             <div className='fixed bottom-2 right-2 z-50'>
@@ -49,4 +50,5 @@ export default async function RootLayout({
       </html>
     </SessionProvider>
   );
+
 }
