@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 interface SuccessProps {
     message: string | undefined | null;
-    setSuccess: (Success:string | undefined | null) => void;
+    setSuccess: (Success:string | null) => void;
 }
 
 export default function Error({ message, setSuccess }: SuccessProps){

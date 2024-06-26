@@ -10,8 +10,8 @@ import { submitContactForm } from "@/actions/apiService";
 
 const Contact = () => {
   const {token_type, token} = useCurrentUser();
-  const [success, setSuccess] = useState<string | null | undefined>(null);
-  const [error, setError] = useState<string | null | undefined>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
