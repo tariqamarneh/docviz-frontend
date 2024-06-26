@@ -1,53 +1,110 @@
 "use client"
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
+interface NavLinkProps {
+    href: string;
+    children: React.ReactNode;
+    active?: boolean;
+    special?: boolean;
+}
 
-export default function App() {
-    const [navbarOpen, setNavbarOpen] = React.useState(false);
+const NavLink: React.FC<NavLinkProps> = ({ href, children, active, special }) => {
+    const baseClasses = "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200";
+    const activeClasses = "text-blue-600 dark:text-blue-400";
+    const inactiveClasses = "text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400";
+    const specialClasses = "bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700";
+
+    return (
+        <a
+            href={href}
+            className={`${baseClasses} ${active ? activeClasses : special ? specialClasses : inactiveClasses}`}
+        >
+            {children}
+        </a>
+    );
+}
+
+const MobileNavLink: React.FC<NavLinkProps> = ({ href, children, active, special }) => {
+    const baseClasses = "block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200";
+    const activeClasses = "bg-blue-500 text-white";
+    const inactiveClasses = "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800";
+    const specialClasses = "bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700";
+
+    return (
+        <a
+            href={href}
+            className={`${baseClasses} ${active ? activeClasses : special ? specialClasses : inactiveClasses}`}
+        >
+            {children}
+        </a>
+    );
+}
+
+const Navbar: React.FC = () => {
+    const [navbarOpen, setNavbarOpen] = useState<boolean>(false);
+    const [scrolled, setScrolled] = useState<boolean>(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 10);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const toggleMenu = () => {
         setNavbarOpen(!navbarOpen);
-      };
+    };
 
     return (
-        <nav className="border-gray-200 fixed w-full t-0 z-50 right-0 bg-gradient-to-r to-gray-400 from-gray-100 dark:bg-gradient-to-r dark:to-slate-900 dark:from-slate-600">
-            <div className="max-w-screen-max flex flex-wrap items-center justify-between mx-auto p-2 pl-7">
-                <a className="flex items-center space-x-3 rtl:space-x-reverse">
-                    <Image src="/logo.png" className="w-14" alt="airefme Logo" width={100} height={100}/>
-                    <span className="self-center text-2xl text-black font-semibold whitespace-nowrap dark:text-white">DocViz</span>
-                </a>
-                <button 
-                    data-collapse-toggle="navbar-default" 
-                    type="button" 
-                    className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" 
-                    aria-controls="navbar-default" 
-                    aria-expanded={navbarOpen}
-                    onClick={toggleMenu}
-                >
-                    <span className="sr-only">Open main menu</span>
-                    <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
-                    </svg>
-                </button>
-                <div className={`${!navbarOpen && "hidden"} w-full md:block md:w-auto pr-11`} id="navbar-default">
-                    <ul className={`font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:border-gray-700 ${navbarOpen && "bg-gray-200 dark:bg-gray-800"}`}>
-                        <li>
-                            <a href="/" className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
-                        </li>
-                        <li>
-                            <a href="/Services" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
-                        </li>
-                        <li>
-                            <a href="/contact" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
-                        </li>
-                        <li className="border-solid border-x-4 border-blue-700 rounded-lg pl-1 pr-1">
-                            <a href="/signin" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign in</a>
-                        </li>
-                    </ul>
+        <nav className={`fixed w-full t-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex items-center justify-between h-16">
+                    <div className="flex items-center">
+                        <a href="/" className="flex items-center space-x-3">
+                            <Image src="/logo.png" className="w-10 h-10" alt="DocViz Logo" width={40} height={40}/>
+                            <span className="text-2xl font-bold text-gray-900 dark:text-white">DocViz</span>
+                        </a>
+                    </div>
+                    <div className="hidden md:block">
+                        <div className="ml-10 flex items-baseline space-x-4">
+                            <NavLink href="/" active>Home</NavLink>
+                            <NavLink href="/services">Services</NavLink>
+                            <NavLink href="/contact">Contact</NavLink>
+                            <NavLink href="/signin" special>Sign in</NavLink>
+                        </div>
+                    </div>
+                    <div className="md:hidden">
+                        <button
+                            onClick={toggleMenu}
+                            className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+                            aria-expanded={navbarOpen}
+                        >
+                            <span className="sr-only">Open main menu</span>
+                            {navbarOpen ? (
+                                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            ) : (
+                                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                            )}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div className={`${navbarOpen ? 'block' : 'hidden'} md:hidden`}>
+                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <MobileNavLink href="/" active>Home</MobileNavLink>
+                    <MobileNavLink href="/services">Services</MobileNavLink>
+                    <MobileNavLink href="/contact">Contact</MobileNavLink>
+                    <MobileNavLink href="/signin" special>Sign in</MobileNavLink>
                 </div>
             </div>
         </nav>
-
     );
 }
+
+export default Navbar;

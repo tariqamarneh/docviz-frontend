@@ -20,6 +20,12 @@ html, body {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob {
+    animation: none;
+  }
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: 

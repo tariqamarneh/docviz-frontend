@@ -1,20 +1,19 @@
 import React from "react";
 
-type ErrorMessageProps = {
-    error: String | undefined;
+
+type MessageProps = {
+    error: string | undefined;
 };
 
-const ErrorMessage: React.FC<ErrorMessageProps> = ({ error }) => {
-    if (!error) {
-        return null;
-    }
+const ErrorMessage: React.FC<MessageProps> = ({ error }) => {
+    if (!error) return null;
 
     return (
-        <div className="mb-5 bg-red-200 p-3 flex rounded-md">
-            <svg className="mr-2" fill="red" width="20px" height="20px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M520.741 163.801a10.234 10.234 0 00-3.406-3.406c-4.827-2.946-11.129-1.421-14.075 3.406L80.258 856.874a10.236 10.236 0 00-1.499 5.335c0 5.655 4.585 10.24 10.24 10.24h846.004c1.882 0 3.728-.519 5.335-1.499 4.827-2.946 6.352-9.248 3.406-14.075L520.742 163.802zm43.703-26.674L987.446 830.2c17.678 28.964 8.528 66.774-20.436 84.452a61.445 61.445 0 01-32.008 8.996H88.998c-33.932 0-61.44-27.508-61.44-61.44a61.445 61.445 0 018.996-32.008l423.002-693.073c17.678-28.964 55.488-38.113 84.452-20.436a61.438 61.438 0 0120.436 20.436zM512 778.24c22.622 0 40.96-18.338 40.96-40.96s-18.338-40.96-40.96-40.96-40.96 18.338-40.96 40.96 18.338 40.96 40.96 40.96zm0-440.32c-22.622 0-40.96 18.338-40.96 40.96v225.28c0 22.622 18.338 40.96 40.96 40.96s40.96-18.338 40.96-40.96V378.88c0-22.622-18.338-40.96-40.96-40.96z"/></svg>
-            <label className="text-red-500">{error}</label>
+        <div className="mb-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 dark:bg-red-900 dark:border-red-600 dark:text-red-100">
+            <p className="font-bold">Error</p>
+            <p>{error}</p>
         </div>
-    )
+    );
 };
 
 export default ErrorMessage;

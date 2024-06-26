@@ -27,6 +27,8 @@ export const Login = async (
             switch (error.type) {
                 case "CredentialsSignin":
                     return { error: "Invalid credentials!"}
+                case "CallbackRouteError":
+                    return { error: "Invalid credentials!"}
                 default:
                     return { error: "Something went wrong!"}
             }
