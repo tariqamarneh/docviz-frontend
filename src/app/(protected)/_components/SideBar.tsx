@@ -98,7 +98,7 @@ const SideBar: React.FC<SideBarProps> = ({
   }, [setIsOpened, touchStartX]);
 
   return (
-    <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out ${isOpened ? 'translate-x-0' : '-translate-x-full'} pt-16`}>
+    <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out ${isOpened ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 ${isOpened ? 'md:relative' : 'md:absolute'}`}>
       <div className="h-full flex flex-col">
         <div className="flex-1 overflow-y-auto py-4 px-3">
           <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Document History</h2>
