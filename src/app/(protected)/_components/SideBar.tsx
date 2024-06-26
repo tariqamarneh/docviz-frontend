@@ -18,7 +18,7 @@ interface SessionData {
 
 interface SideBarProps {
   setIsOpened: (isOpened: boolean) => void;
-  isOpend: boolean;
+  isOpened: boolean;
   sessions: SessionData[];
   setSession: (sessions: SessionData[]) => void;
   setSummary: (summary: string) => void;
@@ -29,7 +29,7 @@ interface SideBarProps {
 
 const SideBar: React.FC<SideBarProps> = ({
   setIsOpened,
-  isOpend,
+  isOpened,
   setSession,
   sessions,
   setSummary,
@@ -98,7 +98,7 @@ const SideBar: React.FC<SideBarProps> = ({
   }, [setIsOpened, touchStartX]);
 
   return (
-    <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out ${isOpend ? 'translate-x-0' : '-translate-x-full'}`}>
+    <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out ${isOpened ? 'translate-x-0' : '-translate-x-full'} pt-16`}>
       <div className="h-full flex flex-col">
         <div className="flex-1 overflow-y-auto py-4 px-3">
           <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Document History</h2>
@@ -135,20 +135,6 @@ const SideBar: React.FC<SideBarProps> = ({
           </button>
         </div>
       </div>
-      <button
-        onClick={() => setIsOpened(!isOpend)}
-        className="absolute top-1/2 -right-3 transform -translate-y-1/2 bg-white dark:bg-gray-800 rounded-r-md p-1 shadow-md"
-      >
-        <svg 
-          className={`w-5 h-5 text-gray-500 transform transition-transform duration-300 ${isOpend ? 'rotate-180' : ''}`} 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24" 
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
     </aside>
   );
 };

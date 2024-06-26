@@ -1,21 +1,14 @@
 "use client"
+import React, { useState, useEffect } from "react";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import Starting from "../_components/Starting";
-import Card from "../_components/Card";
-import { useEffect, useState } from "react";
-import SideBar from "../_components/SideBar";
-import Navbar from "@/components/Navbar";
-import Error from "../_components/Error";
-import { signOut } from "next-auth/react";
-import Footer from "../_components/Footer";
+import Navbar from "@/app/(protected)/_components/navbar";
+import SideBar from "@/app/(protected)/_components/SideBar";
+import Starting from "@/app/(protected)/_components/Starting";
+import Card from "@/app/(protected)/_components/Card";
+import Error from "@/app/(protected)/_components/Error";
+import Footer from "@/app/(protected)/_components/Footer";
 import { fetchUserData, fetchSessions } from "@/actions/apiService";
-
-
-interface User {
-  id: string;
-  email: string;
-  full_name: string;
-}
+import { signOut } from "next-auth/react";
 
 interface SessionData {
   id: string;
@@ -30,30 +23,30 @@ interface SessionData {
   expires_at: string;
 }
 
-
-export default function Home() {
-
+export default function Services() {
   const { token_type, token } = useCurrentUser();
+  const [isOpened, setIsOpened] = useState(false);
   const [fileId, setFileId] = useState<string | null>(null);
   const [summary, setSummary] = useState<string>('');
   const [keyData, setKeyData] = useState<string>('');
   const [insights, setInsights] = useState<string>('');
-  const [isOpend, setIsOpend] = useState(false);
   const [userId, setUserId] = useState<string>('');
   const [sessions, setSessions] = useState<SessionData[]>([]);
-  const [error, setError] = useState<string | null | undefined>(null);
-
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-
     const fetchData = async () => {
+      if (!token_type || !token) {
+        window.location.reload();
+        return;
+      }
+
       try {
         const userData = await fetchUserData(token_type, token);
         setUserId(userData.id);
-        const sessionData1 = await fetchSessions(userData.id, token_type, token);
-        const sessionData = sessionData1.slice().reverse(); 
-        setSessions(sessionData);
-      } catch (error:any) {
+        const sessionData = await fetchSessions(userData.id, token_type, token);
+        setSessions(sessionData.reverse());
+      } catch (error: any) {
         setError(error.message);
         if (error.message === 'Please login first.') {
           signOut();
@@ -61,39 +54,51 @@ export default function Home() {
       }
     };
 
-    if (!token_type || !token) {
-      window.location.reload();
-    } else {
-      fetchData();
-    }
-
+    fetchData();
   }, [token_type, token]);
 
-
-  const style = isOpend ? "translate-x-0" : `-translate-x-[96.5%]`;
-
-  
   return (
-    <div className="h-fill-available">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 to-blue-900 text-white">
+      <Navbar />
       <Error message={error} setError={setError} />
-      <div className="fixed w-screen z-50">
-        <Navbar />
+      <SideBar 
+        isOpened={isOpened}
+        setIsOpened={setIsOpened}
+        sessions={sessions}
+        setSession={setSessions}
+        setSummary={setSummary}
+        setKeyData={setKeyData}
+        setInsights={setInsights}
+        setError={setError}
+      />
+      <button
+        onClick={() => setIsOpened(!isOpened)}
+        className="fixed top-20 left-1 z-50 bg-white dark:bg-gray-800 rounded-r-md p-1 shadow-md"
+      >
+        <svg 
+          className={`w-5 h-5 text-gray-500 transform transition-transform duration-300 ${isOpened ? 'rotate-180' : ''}`} 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24" 
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <div className={`transition-margin duration-300 ease-in-out ${isOpened ? 'ml-64' : 'ml-0'}`}>
+        <div className="pt-20 px-4 sm:px-6 lg:px-8">
+          <Starting 
+            setFileId={setFileId} 
+            setSummary={setSummary} 
+            setKeyData={setKeyData} 
+            setInsights={setInsights} 
+            summary={summary}
+            setError={setError}
+          />
+          <Card summary={summary} keyData={keyData} insights={insights} />
+        </div>
       </div>
-      <div className={`w-[20rem] h-fill-available fixed transition-transform duration-300 ease-in-out z-40 ${style}`}>
-        <SideBar
-          setIsOpened={setIsOpend}
-          isOpend={isOpend}
-          sessions={sessions}
-          setSession={setSessions}
-          setSummary={setSummary}
-          setKeyData={setKeyData}
-          setInsights={setInsights}
-          setError={setError}
-        />
-      </div>
-      <Starting setFileId={setFileId} setSummary={setSummary} setKeyData={setKeyData} setInsights={setInsights} summary={summary} setError={setError}/>
-      <Card summary={summary} keyData={keyData} insights={insights}/>
-      <Footer summary={summary}/>
+      <Footer summary={summary} />
     </div>
   );
 }

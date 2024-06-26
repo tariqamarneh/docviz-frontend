@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 
 interface ErrorProps {
-    message: string | undefined | null;
-    setError: (error:string | undefined | null) => void;
+    message: string | null;
+    setError: (error:string | null) => void;
 }
 
 export default function Error({ message, setError }: ErrorProps){
