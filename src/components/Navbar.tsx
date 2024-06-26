@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
                     <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-4">
                             <NavLink href="/" active={pathname === '/'}>Home</NavLink>
-                            <NavLink href="/services" active={pathname === '/services'}>Services</NavLink>
+                            <NavLink href="/Services" active={pathname === '/Services'}>Services</NavLink>
                             <NavLink href="/contact" active={pathname === '/contact'}>Contact</NavLink>
                             {token ? (
                                 <button onClick={handleSignOut} className="px-3 py-2 rounded-md text-sm font-medium text-white hover:text-blue-200 transition-colors duration-200">
@@ -79,7 +79,7 @@ const Navbar: React.FC = () => {
             <div className={`${navbarOpen ? 'block' : 'hidden'} md:hidden`}>
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-indigo-800">
                     <MobileNavLink href="/" active={pathname === '/'}>Home</MobileNavLink>
-                    <MobileNavLink href="/services" active={pathname === '/services'}>Services</MobileNavLink>
+                    <MobileNavLink href="/Services" active={pathname === '/Services'}>Services</MobileNavLink>
                     <MobileNavLink href="/contact" active={pathname === '/contact'}>Contact</MobileNavLink>
                     {token ? (
                         <button onClick={handleSignOut} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-700 transition-colors duration-200">

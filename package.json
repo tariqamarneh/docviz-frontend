@@ -21,6 +21,7 @@
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.51.4",
     "sass": "^1.77.2",
     "sharp": "^0.33.4",
