@@ -4,7 +4,7 @@ import Starting from "../_components/Starting";
 import Card from "../_components/Card";
 import { useEffect, useState } from "react";
 import SideBar from "../_components/SideBar";
-import Navbar from "../_components/navbar";
+import Navbar from "@/components/Navbar";
 import Error from "../_components/Error";
 import { signOut } from "next-auth/react";
 import Footer from "../_components/Footer";
