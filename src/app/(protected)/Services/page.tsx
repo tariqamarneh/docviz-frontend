@@ -58,7 +58,7 @@ export default function Services() {
   }, [token_type, token]);
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-indigo-950">
+    <div className="flex flex-col h-screen overflow-hidden bg-gradient-to-br from-blue-100 via-purple-50 to-teal-100 dark:from-gray-900 dark:via-purple-900 dark:to-blue-900">
       <Navbar />
       <Error message={error} setError={setError} />
       <div className="flex flex-1 overflow-hidden">
@@ -75,7 +75,7 @@ export default function Services() {
         <main className="flex-1 overflow-y-auto relative">
           <button
             onClick={() => setIsOpened(!isOpened)}
-            className={`fixed top-1/2 z-50 p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg transition-all duration-300 ${
+            className={`fixed top-1/2 z-50 p-2 bg-white dark:bg-gray-800 text-gray-800 dark:text-white rounded-full shadow-lg transition-all duration-300 ${
               isOpened ? 'left-64' : 'left-0'
             }`}
             style={{ transform: 'translateY(-50%)' }}
@@ -106,6 +106,7 @@ export default function Services() {
       <Footer summary={summary} />
     </div>
   );
+
 
 
 }

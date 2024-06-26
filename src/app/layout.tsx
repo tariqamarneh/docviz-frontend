@@ -39,7 +39,7 @@ export default async function RootLayout({
           <ThemeModeScript />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </head>
-        <body className={`${inter.className} h-fill-available bg-gradient-to-r to-gray-400 from-gray-100 dark:bg-gradient-to-r dark:to-slate-900 dark:from-slate-600 overscroll-none safe-area`}>
+        <body className={`${inter.className} h-fill-available from-blue-100 via-purple-50 to-teal-100 dark:from-gray-900 dark:via-purple-900 dark:to-blue-900 overscroll-none safe-area`}>
           <div className="dynamic-island-fill"></div>
           <Flowbite>
             {children}
