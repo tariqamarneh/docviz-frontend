@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import Navbar from "@/app/(protected)/_components/navbar";
+import Navbar from "@/components/Navbar";
 import SideBar from "@/app/(protected)/_components/SideBar";
 import Starting from "@/app/(protected)/_components/Starting";
 import Card from "@/app/(protected)/_components/Card";
