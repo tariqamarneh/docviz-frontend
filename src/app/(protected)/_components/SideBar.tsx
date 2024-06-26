@@ -98,10 +98,10 @@ const SideBar: React.FC<SideBarProps> = ({
   }, [setIsOpened, touchStartX]);
 
   return (
-    <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-gray-800 text-white overflow-hidden transition-transform duration-300 ease-in-out ${
+    <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-gray-800 text-white overflow-hidden transition-transform duration-300 ease-in-out ${
       isOpened ? 'translate-x-0' : '-translate-x-full'
     } flex flex-col`}>
-      <div className="flex-1 overflow-y-auto py-4 px-3">
+      <div className="flex-1 overflow-y-auto py-4 px-3 mt-16"> {/* Added mt-16 to push content below navbar */}
         <h2 className="text-lg font-semibold mb-4">Document History</h2>
         {sessions.length > 0 ? (
           sessions.map((session) => (

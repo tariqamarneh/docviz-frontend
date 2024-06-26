@@ -58,7 +58,7 @@ export default function Services() {
   }, [token_type, token]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-indigo-900">
+    <div className="flex flex-col h-screen overflow-hidden bg-indigo-950">
       <Navbar />
       <Error message={error} setError={setError} />
       <div className="flex flex-1 overflow-hidden">
@@ -72,32 +72,40 @@ export default function Services() {
           setInsights={setInsights}
           setError={setError}
         />
-        <main className={`flex-1 overflow-y-auto transition-all duration-300 ease-in-out ${isOpened ? 'ml-64' : 'ml-0'}`}>
-          <div className="relative h-full">
-            <button
-              onClick={() => setIsOpened(!isOpened)}
-              className="fixed top-20 left-4 z-50 p-2 bg-white dark:bg-gray-800 rounded-md shadow-lg"
+        <main className="flex-1 overflow-y-auto relative">
+          <button
+            onClick={() => setIsOpened(!isOpened)}
+            className={`fixed top-1/2 z-50 p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg transition-all duration-300 ${
+              isOpened ? 'left-64' : 'left-0'
+            }`}
+            style={{ transform: 'translateY(-50%)' }}
+          >
+            <svg 
+              className={`w-6 h-6 transition-transform duration-300 ${isOpened ? 'rotate-180' : ''}`} 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24" 
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-            <div className="p-4 sm:p-6 lg:p-8">
-              <Starting 
-                setFileId={setFileId} 
-                setSummary={setSummary} 
-                setKeyData={setKeyData} 
-                setInsights={setInsights} 
-                summary={summary}
-                setError={setError}
-              />
-              <Card summary={summary} keyData={keyData} insights={insights} />
-            </div>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          <div className="h-full">
+            <Starting 
+              setFileId={setFileId} 
+              setSummary={setSummary} 
+              setKeyData={setKeyData} 
+              setInsights={setInsights} 
+              summary={summary}
+              setError={setError}
+            />
+            <Card summary={summary} keyData={keyData} insights={insights} />
           </div>
         </main>
       </div>
       <Footer summary={summary} />
     </div>
   );
+
 
 }

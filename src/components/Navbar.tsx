@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
     };
 
     return (
-        <nav className={`fixed w-full z-50 transition-all duration-300 ${
+        <nav className={`fixed w-full z-40 transition-all duration-300 ${
             scrolled 
                 ? 'bg-indigo-800 shadow-lg' 
                 : 'bg-transparent'
