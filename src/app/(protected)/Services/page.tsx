@@ -58,10 +58,10 @@ export default function Services() {
   }, [token_type, token]);
 
   return (
-    <div className="min-h-screen bg-indigo-900 text-white">
+    <div className="flex flex-col min-h-screen bg-indigo-900">
       <Navbar />
       <Error message={error} setError={setError} />
-      <div className="flex">
+      <div className="flex flex-1 overflow-hidden">
         <SideBar 
           isOpened={isOpened}
           setIsOpened={setIsOpened}
@@ -72,20 +72,14 @@ export default function Services() {
           setInsights={setInsights}
           setError={setError}
         />
-        <div className={`flex-1 transition-all duration-300 ease-in-out ${isOpened ? 'md:ml-64' : ''}`}>
-          <div className="relative">
+        <main className={`flex-1 overflow-y-auto transition-all duration-300 ease-in-out ${isOpened ? 'ml-64' : 'ml-0'}`}>
+          <div className="relative h-full">
             <button
               onClick={() => setIsOpened(!isOpened)}
-              className="fixed top-1/2 left-0 z-50 bg-white dark:bg-gray-800 rounded-r-md p-2 shadow-md transform -translate-y-1/2"
+              className="fixed top-20 left-4 z-50 p-2 bg-white dark:bg-gray-800 rounded-md shadow-lg"
             >
-              <svg 
-                className={`w-5 h-5 text-gray-500 transform transition-transform duration-300 ${isOpened ? 'rotate-180' : ''}`} 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
             <div className="p-4 sm:p-6 lg:p-8">
@@ -100,7 +94,7 @@ export default function Services() {
               <Card summary={summary} keyData={keyData} insights={insights} />
             </div>
           </div>
-        </div>
+        </main>
       </div>
       <Footer summary={summary} />
     </div>
