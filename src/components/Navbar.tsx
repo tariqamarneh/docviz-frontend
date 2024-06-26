@@ -3,11 +3,14 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { signOut } from "next-auth/react";
 import { useCurrentUser } from "@/hooks/use-current-user";
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 const Navbar: React.FC = () => {
     const [navbarOpen, setNavbarOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const { token } = useCurrentUser();
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -34,22 +37,22 @@ const Navbar: React.FC = () => {
             <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center">
-                        <a href="/" className="flex items-center space-x-3">
+                        <Link href="/" className="flex items-center space-x-3">
                             <Image src="/logo.png" className="w-10 h-10" alt="DocViz Logo" width={40} height={40}/>
                             <span className="text-2xl font-bold text-white">DocViz</span>
-                        </a>
+                        </Link>
                     </div>
                     <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-4">
-                            <NavLink href="/" active>Home</NavLink>
-                            <NavLink href="/services">Services</NavLink>
-                            <NavLink href="/contact">Contact</NavLink>
+                            <NavLink href="/" active={pathname === '/'}>Home</NavLink>
+                            <NavLink href="/services" active={pathname === '/services'}>Services</NavLink>
+                            <NavLink href="/contact" active={pathname === '/contact'}>Contact</NavLink>
                             {token ? (
                                 <button onClick={handleSignOut} className="px-3 py-2 rounded-md text-sm font-medium text-white hover:text-blue-200 transition-colors duration-200">
                                     Sign out
                                 </button>
                             ) : (
-                                <NavLink href="/signin" special>Sign in</NavLink>
+                                <NavLink href="/signin" active={pathname === '/signin'} special>Sign in</NavLink>
                             )}
                         </div>
                     </div>
@@ -75,15 +78,15 @@ const Navbar: React.FC = () => {
             </div>
             <div className={`${navbarOpen ? 'block' : 'hidden'} md:hidden`}>
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-indigo-800">
-                    <MobileNavLink href="/" active>Home</MobileNavLink>
-                    <MobileNavLink href="/services">Services</MobileNavLink>
-                    <MobileNavLink href="/contact">Contact</MobileNavLink>
+                    <MobileNavLink href="/" active={pathname === '/'}>Home</MobileNavLink>
+                    <MobileNavLink href="/services" active={pathname === '/services'}>Services</MobileNavLink>
+                    <MobileNavLink href="/contact" active={pathname === '/contact'}>Contact</MobileNavLink>
                     {token ? (
                         <button onClick={handleSignOut} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-700 transition-colors duration-200">
                             Sign out
                         </button>
                     ) : (
-                        <MobileNavLink href="/signin" special>Sign in</MobileNavLink>
+                        <MobileNavLink href="/signin" active={pathname === '/signin'} special>Sign in</MobileNavLink>
                     )}
                 </div>
             </div>
@@ -94,39 +97,39 @@ const Navbar: React.FC = () => {
 interface NavLinkProps {
     href: string;
     children: React.ReactNode;
-    active?: boolean;
+    active: boolean;
     special?: boolean;
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ href, children, active, special }) => {
     const baseClasses = "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200";
-    const activeClasses = "text-blue-600 dark:text-blue-400";
-    const inactiveClasses = "text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400";
-    const specialClasses = "bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700";
+    const activeClasses = "text-white bg-indigo-700";
+    const inactiveClasses = "text-indigo-100 hover:text-white hover:bg-indigo-700";
+    const specialClasses = "bg-blue-500 text-white hover:bg-blue-600";
 
     return (
-        <a
+        <Link
             href={href}
             className={`${baseClasses} ${active ? activeClasses : special ? specialClasses : inactiveClasses}`}
         >
             {children}
-        </a>
+        </Link>
     );
 }
 
 const MobileNavLink: React.FC<NavLinkProps> = ({ href, children, active, special }) => {
     const baseClasses = "block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200";
-    const activeClasses = "bg-blue-500 text-white";
-    const inactiveClasses = "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800";
-    const specialClasses = "bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700";
+    const activeClasses = "bg-indigo-700 text-white";
+    const inactiveClasses = "text-indigo-100 hover:bg-indigo-700 hover:text-white";
+    const specialClasses = "bg-blue-500 text-white hover:bg-blue-600";
 
     return (
-        <a
+        <Link
             href={href}
             className={`${baseClasses} ${active ? activeClasses : special ? specialClasses : inactiveClasses}`}
         >
             {children}
-        </a>
+        </Link>
     );
 }
 
