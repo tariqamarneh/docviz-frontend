@@ -1,4 +1,5 @@
 "use client"
+import TextScramble from "@/components/ani";
 import NavBar from "../components/Navbar";
 import { useEffect, useState } from "react";
 
@@ -31,7 +32,7 @@ export default function Home() {
             href="/signup"
             className="inline-flex items-center px-8 py-3 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-teal-400 rounded-full hover:from-blue-600 hover:to-teal-500 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
           >
-            Get Started
+            <TextScramble text="Get Started"/>
             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
             </svg>
