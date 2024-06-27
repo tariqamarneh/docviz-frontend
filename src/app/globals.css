@@ -71,3 +71,7 @@ body {
   }
 }
 
+.stop-color-blue-400 { stop-color: #60A5FA; }
+.stop-color-indigo-600 { stop-color: #4F46E5; }
+.dark .stop-color-blue-600 { stop-color: #2563EB; }
+.dark .stop-color-indigo-400 { stop-color: #818CF8; }

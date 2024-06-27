@@ -5,6 +5,7 @@ import { signOut } from "next-auth/react";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import AnimatedLogo from "./AnimatedLogo";
 
 const Navbar: React.FC = () => {
     const [navbarOpen, setNavbarOpen] = useState(false);
@@ -38,7 +39,9 @@ const Navbar: React.FC = () => {
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center">
                         <Link href="/" className="flex items-center space-x-3">
-                            <Image src="/logo.png" className="w-10 h-10" alt="DocViz Logo" width={40} height={40}/>
+                            {/* <Image src="/logo.png" className="w-10 h-10" alt="DocViz Logo" width={40} height={40}/> */}
+                            {/* <Logo className="w-12 h-12" /> */}
+                            <AnimatedLogo className="w-10 h-10" width={40} height={40} />
                             <span className="text-2xl font-bold text-gray-900 dark:text-white">DocViz</span>
                         </Link>
                     </div>
