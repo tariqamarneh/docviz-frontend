@@ -23,8 +23,8 @@ const Card: React.FC<CardProps> = ({ summary, keyData, insights }) => {
     };
 
     return (
-        <div className={`max-w-4xl mx-auto p-6 ${summary ? '' : 'hidden'}`}>
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden">
+        <div className={`fixed inset-0 flex items-center justify-center p-4 ${summary ? '' : 'hidden'}`}>
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden w-full max-w-4xl max-h-[80vh] flex flex-col">
                 <div className="flex justify-around p-4 bg-gray-100 dark:bg-gray-700">
                     {(['summary', 'keyPhrases', 'insights'] as const).map((tab) => (
                         <motion.button
@@ -45,7 +45,7 @@ const Card: React.FC<CardProps> = ({ summary, keyData, insights }) => {
                         </motion.button>
                     ))}
                 </div>
-                <div className="p-6">
+                <div className="p-6 overflow-y-auto flex-grow">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeTab}
@@ -54,15 +54,16 @@ const Card: React.FC<CardProps> = ({ summary, keyData, insights }) => {
                             animate="visible"
                             exit="hidden"
                             transition={{ duration: 0.3 }}
+                            className="h-full"
                         >
                             {activeTab === 'summary' && (
-                                <div className="prose dark:prose-invert max-w-none">
+                                <div className="prose dark:prose-invert max-w-none h-full">
                                     <h2 className="text-2xl font-bold mb-4">Summary</h2>
                                     <p>{summary}</p>
                                 </div>
                             )}
                             {activeTab === 'keyPhrases' && (
-                                <div>
+                                <div className="h-full">
                                     <h2 className="text-2xl font-bold mb-4">Key Phrases</h2>
                                     <div className="flex flex-wrap gap-2">
                                         {keyPhrases.map((phrase, index) => (
@@ -80,7 +81,7 @@ const Card: React.FC<CardProps> = ({ summary, keyData, insights }) => {
                                 </div>
                             )}
                             {activeTab === 'insights' && (
-                                <div className="prose dark:prose-invert max-w-none">
+                                <div className="prose dark:prose-invert max-w-none h-full">
                                     <h2 className="text-2xl font-bold mb-4">Insights</h2>
                                     <p>{insights}</p>
                                 </div>

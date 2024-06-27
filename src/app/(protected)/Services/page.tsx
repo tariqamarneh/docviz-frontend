@@ -103,7 +103,7 @@ export default function Services() {
           </div>
         </main>
       </div>
-      <Footer summary={summary} />
+      {/* <Footer summary={summary} /> */}
     </div>
   );
 
