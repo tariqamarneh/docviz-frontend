@@ -38,17 +38,15 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-50 to-teal-100 dark:from-gray-900 dark:via-purple-900 dark:to-blue-900">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-50 to-teal-100 dark:from-gray-900 dark:via-purple-900 dark:to-blue-900 flex flex-col">
       <Navbar />
-      <Error message={error} setError={setError} />
-      <Success message={success} setSuccess={setSuccess} />
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 py-16 sm:px-6 lg:px-8"
-      >
-        <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+      <div className="flex-grow flex items-center justify-center px-4 py-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-4xl bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden"
+        >
           <div className="md:flex">
             <div className="md:w-1/2 bg-blue-600 dark:bg-blue-800 p-8 text-white">
               <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
@@ -118,8 +116,10 @@ const Contact = () => {
               </form>
             </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
+      <Error message={error} setError={setError} />
+      <Success message={success} setSuccess={setSuccess} />
     </div>
   );
 };
