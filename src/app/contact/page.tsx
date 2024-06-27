@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from "react";
-import Navbar from "./_components/Navbar";
+import Navbar from "@/components/Navbar";
 import Error from '@/app/(protected)/_components/Error'
 import Success from '@/app/(protected)/_components/Success'
 import { useCurrentUser } from "@/hooks/use-current-user";
