@@ -32,7 +32,7 @@ const Card: React.FC<CardProps> = ({ summary, keyData, insights }) => {
                             className={`px-4 py-2 rounded-lg font-medium ${
                                 activeTab === tab 
                                     ? 'bg-blue-500 text-white' 
-                                    : 'text-gray-700 dark:text-gray-300'
+                                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                             }`}
                             onClick={() => setActiveTab(tab)}
                             variants={tabVariants}
@@ -58,13 +58,13 @@ const Card: React.FC<CardProps> = ({ summary, keyData, insights }) => {
                         >
                             {activeTab === 'summary' && (
                                 <div className="prose dark:prose-invert max-w-none h-full">
-                                    <h2 className="text-2xl font-bold mb-4">Summary</h2>
-                                    <p>{summary}</p>
+                                    <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Summary</h2>
+                                    <p className="text-gray-700 dark:text-gray-300">{summary}</p>
                                 </div>
                             )}
                             {activeTab === 'keyPhrases' && (
                                 <div className="h-full">
-                                    <h2 className="text-2xl font-bold mb-4">Key Phrases</h2>
+                                    <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Key Phrases</h2>
                                     <div className="flex flex-wrap gap-2">
                                         {keyPhrases.map((phrase, index) => (
                                             <motion.span
@@ -82,8 +82,8 @@ const Card: React.FC<CardProps> = ({ summary, keyData, insights }) => {
                             )}
                             {activeTab === 'insights' && (
                                 <div className="prose dark:prose-invert max-w-none h-full">
-                                    <h2 className="text-2xl font-bold mb-4">Insights</h2>
-                                    <p>{insights}</p>
+                                    <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Insights</h2>
+                                    <p className="text-gray-700 dark:text-gray-300">{insights}</p>
                                 </div>
                             )}
                         </motion.div>
